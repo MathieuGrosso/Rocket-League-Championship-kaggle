@@ -1,12 +1,16 @@
 
 from flask import Flask, jsonify, request
-import return_predictions
-import train_model from 'src/app.py'
-from joblib import dump, load
+from src.app import return_predictions
+
+import pandas as pd
+import os
+
 
 app = Flask(__name__)
 
-MODEL_FILEPATH = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/model/model_A_0.joblib"
+
+model_FILEPATH_A = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/model/model_A_0.joblib"
+model_FILEPATH_B = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/model/model_B_0.joblib"
 
 
 @app.route("/")
@@ -14,35 +18,21 @@ def hello():
     return "Welcome to machine learning model APIs!"
 
 
-@app.route("/predict")
-def predict():
-    return "Welcome to machine learning model APIs!"
-
-
-@app.route('/train', methods=['GET'])
-try:
-            train_model(MODEL_FILEPATH)
-            return jsonify(({'status': 'success', 'message': 'Model successfully updated'}))
-
-        except Exception as e:
-            return str(e)
-
 @app.route('/predict', methods=['POST'])
-def get_scores(MODEL_FILEPATH="/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/model/model_A_0.joblib"):
-    payload = request.json # get the data
+def get_scores():
+    # handle data
+    payload = request.json  # get the data
     print(payload)
     input_df = pd.DataFrame(payload)
     print(input_df)
-    
     payload = request.json
     input_df = pd.DataFrame(payload)
     input_df.fillna(-1, inplace=True)
 
-    # if not os.path.exists(MODEL_FILEPATH):
-    #     train_and_save_model(MODEL_FILEPATH)
+    # load all models
 
-    model = load(MODEL_FILEPATH)
-    predictions = model.predict_proba(input_df)
+    predictions = return_predictions(
+        input_df, model_FILEPATH_A, model_FILEPATH_B)
     scores = [prediction[1] for prediction in predictions]
 
     return jsonify({'scores': scores})
@@ -50,4 +40,3 @@ def get_scores(MODEL_FILEPATH="/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/
 
 if __name__ == '__main__':
     app.run()
-
