@@ -1,7 +1,7 @@
 
 from flask import Flask, jsonify, request
 from src.app import return_predictions
-
+import icecream as ic
 import pandas as pd
 import os
 
@@ -22,7 +22,6 @@ def hello():
 def get_scores():
     # handle data
     payload = request.json  # get the data
-    print(payload)
     input_df = pd.DataFrame(payload)
     print(input_df)
     payload = request.json
