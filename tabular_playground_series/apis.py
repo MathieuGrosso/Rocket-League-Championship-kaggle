@@ -5,7 +5,7 @@ url = 'http://127.0.0.1:5000' + '/predict'
 
 headers = {"Content-Type": "application/json"}
 
-data = """[
+test = """[
 {
 "id":6, 
 
@@ -174,10 +174,10 @@ data = """[
   "boost3_timer": 0.0,
   "boost4_timer": 0.0,
   "boost5_timer": 0.0}
-]"""
+  ]
+"""
 
-response = requests.post(url, headers=headers, data=data)
-print(response)
+response = requests.post(url, headers=headers, data=test)
 if response.ok:
     print(response.json())
 else:
