@@ -3,7 +3,7 @@ from pyexpat import model
 from joblib import dump, load
 import pandas as pd
 import os
-import icecream as ic
+from icecream import ic
 import pprint
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ import numpy as np
 
 
 # import xgboost as xgb
-from lightgbm import LGBMClassifier
+# from lightgbm import LGBMClassifier
 
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import cross_validate, KFold  # k-fold Cross Validation
@@ -46,6 +46,7 @@ def run_prediction(input_df, model_A_path, model_B_path):
     for key in test_predictions:
         print(f"Team: {key} ")
         prediction = run_model(input_df, key)
+        # ic(prediction)
 
         test_predictions[key].append(prediction)
     return test_predictions

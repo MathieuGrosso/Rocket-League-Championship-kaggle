@@ -1,6 +1,6 @@
 
 from flask import Flask, jsonify, request
-from src.app import return_predictions
+from src.predict import return_predictions
 import icecream as ic
 import pandas as pd
 import os
@@ -87,4 +87,4 @@ def get_scores():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
