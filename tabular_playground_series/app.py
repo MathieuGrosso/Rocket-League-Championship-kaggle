@@ -29,7 +29,7 @@ model_FILEPATH_B = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced
 
 @app.route("/")
 def hello():
-    return "Welcome to machine learning model APIs!"
+    return "Welcome to machine learning model APIs of Mathieu and Heloise!"
 
 
 def euclidian_dist(x):
