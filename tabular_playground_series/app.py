@@ -23,8 +23,8 @@ pos_groups = {
     for el in ['ball'] + [f'p{i}' for i in range(6)]
 }
 
-model_FILEPATH_A = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/models/model_A_0.joblib"
-model_FILEPATH_B = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/models/model_B_0.joblib"
+model_FILEPATH_A = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models/model_A_0.joblib"
+model_FILEPATH_B = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models/model_B_0.joblib"
 
 
 @app.route("/")

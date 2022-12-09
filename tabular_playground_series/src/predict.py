@@ -18,7 +18,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn import metrics
 
 
-MODEL_PATH = "/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/models/"
+MODEL_PATH = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models"
 DATA_FILEPATH = os.path.join('data', '')
 
 
@@ -28,7 +28,7 @@ test_predictions = {'A': [], 'B': []}
 
 def run_model(test, key):
     test_predictions = []
-    for dirname, _, filenames in os.walk('/Users/mathieugrosso/Desktop/X-HEC-entrepreneurs/IA-advanced/my_model_api/Kaggle_Competitions/tabular_playground_series/models'):
+    for dirname, _, filenames in os.walk('/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models'):
         for i in filenames:
             if key in i:
 
