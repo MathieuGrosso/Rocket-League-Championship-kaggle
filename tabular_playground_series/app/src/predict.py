@@ -6,6 +6,7 @@ from icecream import ic
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import glob
 
 
 # import xgboost as xgb
@@ -18,7 +19,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn import metrics
 
 
-MODEL_PATH = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models"
+MODEL_PATH = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/app/models"
 DATA_FILEPATH = os.path.join('data', '')
 
 
@@ -28,7 +29,9 @@ test_predictions = {'A': [], 'B': []}
 
 def run_model(test, key):
     test_predictions = []
-    for dirname, _, filenames in os.walk('/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models'):
+    print(glob.glob(glob.glob('/home/ubuntu/Kaggle_Competitions/tabular_playground_series/')):
+    # for filenames in glob.glob('/home/ubuntu/Kaggle_Competitions/tabular_playground_series/*.joblib'):
+        print(filenames)
         for i in filenames:
             if key in i:
 
@@ -42,16 +45,21 @@ def run_model(test, key):
 
 def run_prediction(input_df, model_A_path, model_B_path):
     test_predictions = {'A': [], 'B': []}
+
     for key in test_predictions:
         print(f"Team: {key} ")
+    
         prediction = run_model(input_df, key)
+ 
 
         test_predictions[key].append(prediction)
     return test_predictions
 
 
 def return_predictions(input_df, model_A_path, model_B_path):
+
     test_predictions = run_prediction(input_df, model_A_path, model_B_path)
+
     test_predictions['B'] = test_predictions['B'][0]
     test_predictions['A'] = test_predictions['A'][0]
     test_predictions['team_A_scoring_within_10sec'] = test_predictions['A']

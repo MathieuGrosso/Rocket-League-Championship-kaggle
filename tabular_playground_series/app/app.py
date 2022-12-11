@@ -23,8 +23,8 @@ pos_groups = {
     for el in ['ball'] + [f'p{i}' for i in range(6)]
 }
 
-model_FILEPATH_A = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models/model_A_0.joblib"
-model_FILEPATH_B = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/models/model_B_0.joblib"
+model_FILEPATH_A = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/app/models"
+model_FILEPATH_B = "/home/ubuntu/Kaggle_Competitions/tabular_playground_series/app/models"
 
 
 @app.route("/")
@@ -76,7 +76,7 @@ def get_scores():
     input_df = input_df.drop(["ball_pos_dist_ball", "abs_ball_speed"], axis=1)
 
     # load all models
-
+    print(input_df)
     predictions = return_predictions(
         input_df, model_FILEPATH_A, model_FILEPATH_B)
     print(predictions)
@@ -87,4 +87,5 @@ def get_scores():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.debug = True
+    app.run(host='0.0.0.0',port =5000)
