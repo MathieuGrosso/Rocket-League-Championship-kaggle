@@ -60,6 +60,9 @@ def add_features(test):
 
     return test
 
+@app.route('/predict', methods=['GET'])
+def get_lea():
+    return 'lea est la plus belle'
 
 @app.route('/predict', methods=['POST'])
 def get_scores():

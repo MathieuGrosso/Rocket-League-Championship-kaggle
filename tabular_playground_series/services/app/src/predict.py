@@ -33,16 +33,14 @@ def run_model(test, key):
     test_predictions = []
     # print(glob.glob(glob.glob('/home/ubuntu/Kaggle_Competitions/tabular_playground_series/')):
     # import os
-    ic(os.getcwd())
-    ic(glob.glob('/app/models/*.joblib'))
-    for filenames in glob.glob('/app/models/*.joblib'):
-        print(filenames)
+    # ic(os.getcwd())
+    # ic(glob.glob('/app/models/*.joblib'))
+    for filenames in os.listdir('/app/models/'):
         for i in filenames:
-            if key in i:
-
-                model_path = os.path.join(MODEL_PATH, i)
+            path = os.path.basename(filenames)
+            if key in path:
+                model_path = os.path.join(MODEL_PATH,path)
                 model = load(model_path)
-
                 test_predictions.append(model.predict_proba(test)[:, 1])
 
     return np.mean(test_predictions, axis=0)
