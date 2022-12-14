@@ -3,7 +3,7 @@ import icecream as ic
 
 url = 'http://127.0.0.1:5000' + '/predict'
 
-headers = {"Content-Type": "application/json"}
+headers = {"Content-Type":"application/json"}
 
 test = """[
 {

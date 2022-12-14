@@ -31,6 +31,9 @@ services:
       - POSTGRES_USER=TPS_flask
       - POSTGRES_PASSWORD=TPS_flask
       - POSTGRES_DB=TPS_flask_dev
+    # env_file:
+    #   - ./.env.prod
+    
 
 volumes:
   postgres_data:
