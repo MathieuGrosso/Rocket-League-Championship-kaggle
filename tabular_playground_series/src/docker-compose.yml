@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: services/app/.
+    command: python app.py run -h 0.0.0.0
+    volumes:
+      - static_volume:/home/ubuntu/Kaggle_Competitions/tabular_playground_series/services/app/models/
+
+    ports:
+      - "5000:5000"
+
+volumes:
+  static_volume:
