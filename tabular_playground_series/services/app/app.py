@@ -1,13 +1,28 @@
 
 from flask import Flask, jsonify, request
 from src.predict import return_predictions
-import icecream as ic
 import pandas as pd
 import os
 import numpy as np
+from flask_sqlalchemy import SQLAlchemy
+
 
 
 app = Flask(__name__)
+app.config.from_object("config.Config")
+db = SQLAlchemy(app)
+
+
+class User(db.Model):
+    __tablename__ = "users"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(128), unique=True, nullable=False)
+    active = db.Column(db.Boolean(), default=True, nullable=False)
+
+    def __init__(self, email):
+        self.email = email
+
 
 vel_groups = {
     f"{el}_vel": [f'{el}_vel_x', f'{el}_vel_y', f'{el}_vel_z']
