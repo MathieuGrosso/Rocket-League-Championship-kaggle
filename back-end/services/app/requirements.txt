@@ -79,3 +79,5 @@ wrapt @ file:///Users/runner/miniforge3/conda-bld/wrapt_1666806247108/work
 yarl @ file:///Users/runner/miniforge3/conda-bld/yarl_1666861803792/work
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1669453021653/work
 zope.interface==5.5.2
+python-dotenv
+flask-cors
